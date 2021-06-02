@@ -1,0 +1,21 @@
+.my_posts {
+    background-color: green;
+    padding: 30px;
+}
+
+.my_posts h2 {
+    font-weight: normal;
+    font-size: 26px;
+}
+
+.my_posts textarea {
+    width: 100%;
+    resize: none;
+    min-height: 70px;
+    background-color: #ccc;
+    padding: 10px;    
+}
+
+.my_posts button {
+    margin-bottom: 40px;
+}
