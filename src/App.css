@@ -6,6 +6,9 @@
     grid-template-columns: 2fr 10fr;
     grid-template-areas:
     "header header"
-    "nav content";
-    grid-gap: 10px;
+    "nav content";   
+}
+
+.app-wrapper-content {
+    grid-area: content;   
 }

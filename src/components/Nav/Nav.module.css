@@ -9,4 +9,14 @@
     padding-left: 20px;
     font-size: 18px;
     font-weight: 700;
+    
+}
+
+.item a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.item a.active {
+    color: gold;
 }
