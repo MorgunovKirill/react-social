@@ -1,9 +1,24 @@
-.dialog a {
-    color: white;
+.dialog {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #000;
     text-decoration: none;
 }
 
-.dialog.active a {
-    color: gold;
-    text-decoration: none;
+.dialog:focus, 
+.dialog:hover {
+    color: green;
 }
+
+.dialog.active {
+    color: gold;
+}
+
+
+.dialog img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
