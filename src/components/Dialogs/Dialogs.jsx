@@ -1,26 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import classes from './Dialogs.module.css';
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Message/Message';
 
-
-const DialogItem = (props) => {
-    let path = "/dialogs/" + props.id;
-
-    return (
-        <div className={classes.dialog + ' ' + classes.active}>
-                    <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-const Message = (props) => {
-    return (
-        <div className={classes.message}>{props.message}</div>
-    )
-}
 
 const Dialogs = (props) => {
-    let dialogsData = [
+    let dialogs = [
         {name: "Dima", id:"1"},
         {name: "Andrey", id:"2"},
         {name: "Sveta", id:"3"},
@@ -28,25 +13,26 @@ const Dialogs = (props) => {
         {name: "Valera", id:"5"},
     ];
 
-    let messagesData = [
+    let messages = [
         {message: "Hi", id:"1"},
         {message: "How are you?", id:"2"},
         {message: "Yo", id:"3"},   
     ];
 
+    const dialogsElements = dialogs.map((dialog, i) => {
+        return (<DialogItem key={Math.random() + i} name={dialog.name} id={dialog.id}/>)
+    })
+
+    const messagesElements = messages.map((message, i) => <Message key={Math.random() + i} message={message.message}/>);
+
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
-                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>
-                <DialogItem name={dialogsData[3].name} id={dialogsData[3].id}/>
-                <DialogItem name={dialogsData[4].name} id={dialogsData[4].id}/>           
+               {dialogsElements}   
             </div>
             <div className={classes.messages}>
-                <Message message={messagesData[0].message}/>
-                <Message message={messagesData[1].message}/>
-                <Message message={messagesData[2].message}/>
+               {messagesElements}   
             </div>
         </div>
     )
