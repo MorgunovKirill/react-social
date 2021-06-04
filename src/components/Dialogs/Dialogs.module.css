@@ -10,3 +10,14 @@
 .messages {
     padding: 10px;
 }
+
+.textArea {
+    width: 100%;
+    min-height: 70px;
+    resize: none;
+    padding: 10px;
+}
+
+.button {
+
+}

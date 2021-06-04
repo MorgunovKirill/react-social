@@ -3,7 +3,6 @@ import classes from './Message.module.css';
 
 
 const Message = (props) => {  
-console.log("🚀 ~ file: Message.js ~ line 6 ~ Message ~ props", props)
     
     
     return (

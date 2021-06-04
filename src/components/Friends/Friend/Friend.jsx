@@ -1,11 +1,13 @@
 import React from 'react';
 import classes from "./Friend.module.css";
 
-const Friend = () => {
+const Friend = (props) => {
     return (
-        <div className={classes.friend}>
-            
-        </div>
+        <li className={classes.friend}>
+            <a href="#">
+                {props.name}
+            </a>            
+        </li>
     )
 }
 

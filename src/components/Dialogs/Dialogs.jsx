@@ -5,6 +5,12 @@ import Message from './Message/Message';
 
 
 const Dialogs = (props) => {
+    let newPostElement = React.createRef();
+
+    const addPost = () => {
+        let text = newPostElement.current.value;
+        alert(text);
+    }
 
     const dialogsElements = props.state.dialogs.map((dialog, i) => {
         return (<DialogItem key={Math.random() + i} name={dialog.name} id={dialog.id}/>)
@@ -19,7 +25,9 @@ const Dialogs = (props) => {
                {dialogsElements}   
             </div>
             <div className={classes.messages}>
-               {messagesElements}   
+               {messagesElements}
+               <textarea className={classes.textArea} ref={newPostElement}></textarea>   
+               <button className={classes.button} onClick={ addPost }>Отправить сообщение</button>
             </div>
         </div>
     )
