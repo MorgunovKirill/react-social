@@ -5,18 +5,20 @@ import Message from './Message/Message';
 
 
 const Dialogs = (props) => {
+    
     let newPostElement = React.createRef();
 
-    const addPost = () => {
-        let text = newPostElement.current.value;
-        alert(text);
-    }
+      let updateTextArea = (evt) => {
+        let text = evt.target.value;
+        props.updateNewMessageText(text)
+      }
+    
 
-    const dialogsElements = props.state.dialogs.map((dialog, i) => {
+    const dialogsElements = props.dialogsPage.dialogs.map((dialog, i) => {
         return (<DialogItem key={Math.random() + i} name={dialog.name} id={dialog.id}/>)
     })
 
-    const messagesElements = props.state.messages.map((message, i) => <Message key={Math.random() + i} message={message.message} sender={message.sender}/>);
+    const messagesElements = props.dialogsPage.messages.map((message, i) => <Message key={Math.random() + i} message={message.message} sender={message.sender}/>);
 
 
     return (
@@ -26,8 +28,8 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                {messagesElements}
-               <textarea className={classes.textArea} ref={newPostElement}></textarea>   
-               <button className={classes.button} onClick={ addPost }>Отправить сообщение</button>
+               <textarea onChange={updateTextArea} className={classes.textArea} ref={newPostElement} value={props.dialogsPage.newMessage}/>
+               <button className={classes.button} onClick={ props.addMessage }>Отправить сообщение</button>
             </div>
         </div>
     )
