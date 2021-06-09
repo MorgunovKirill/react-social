@@ -2,20 +2,18 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {addMessageActionCreator, updateNewMessageActionCreator} from '../../redux/state'
+import {addMessageCreator, updateNewMessageCreator} from '../../redux/dialogsReducer'
 
 
 const Dialogs = (props) => {
     
-    let newPostElement = React.createRef();
-
     let addMessage = () => {
-      props.dispatch(addMessageActionCreator())
+      props.dispatch(addMessageCreator())
     };
 
     let updateTextArea = (evt) => {
       let text = evt.target.value;
-      props.dispatch(updateNewMessageActionCreator(text));        
+      props.dispatch(updateNewMessageCreator(text));        
     };
   
 
@@ -33,7 +31,7 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                {messagesElements}
-               <textarea onChange={updateTextArea} className={classes.textArea} ref={newPostElement} value={props.dialogsPage.newMessage}/>
+               <textarea onChange={updateTextArea} className={classes.textArea}  value={props.dialogsPage.newMessage}/>
                <button onClick={addMessage} className={classes.button} >Отправить сообщение</button>
             </div>
         </div>
