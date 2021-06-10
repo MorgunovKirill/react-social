@@ -8,7 +8,24 @@ export const updateNewMessageCreator = (text) => ({
     newText: text
 });
 
-const dialogsReducer = (state, action) => {
+let initialState = {
+    dialogs: [
+        { name: "Dima", id: "1" },
+        { name: "Andrey", id: "2" },
+        { name: "Sveta", id: "3" },
+        { name: "Misha", id: "4" },
+        { name: "Valera", id: "5" },
+    ],
+    messages: [
+        { message: "Hi", id: "1", sender: "own"},
+        { message: "How are you?", id: "2", sender: "own"},
+        { message: "Yo", id: "3", sender: "other"},
+        { message: "I'm fine", id: "4", sender: "other"},
+    ],
+    newMessage: '',
+}
+
+const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage = {

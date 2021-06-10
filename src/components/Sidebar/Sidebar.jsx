@@ -4,6 +4,7 @@ import Nav from '../Nav/Nav';
 import Friends from '../Friends/Friends';
 
 const Sidebar = (props) => {
+    
     return (
         <div className={classes.sidebar}>
             <Nav />
