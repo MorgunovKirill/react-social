@@ -4,11 +4,12 @@ import Nav from '../Nav/Nav';
 import Friends from '../Friends/Friends';
 
 const Sidebar = (props) => {
+    let state = props.store.getState().sideBar;  
     
     return (
         <div className={classes.sidebar}>
             <Nav />
-            <Friends friends={props.state.friends} />
+            <Friends friends={state.friends} />
         </div>
     )
 }
