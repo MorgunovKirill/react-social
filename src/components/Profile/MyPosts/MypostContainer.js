@@ -3,29 +3,6 @@ import {addPostCreator, updateNewPostCreator} from '../../../redux/profileReduce
 import { connect } from 'react-redux';
 
 
-// const MypostsContainer = (props) => {     
-//   let state = props.store.getState().profilePage;
-
-//   let addPost = () => {
-//     props.store.dispatch(addPostCreator());
-//   }
-
-//   let updateTextArea = (evt) => {
-//     let text = evt.target.value;
-//     props.store.dispatch(updateNewPostCreator(text));
-//   }
-
-
-//     return (  
-//         <Myposts 
-//         updateTextArea={updateTextArea} 
-//         addPost={addPost} 
-//         posts={state.posts} 
-//         newPostText={state.newPostText}
-//         />    
-//     )
-// }
-
 const mapStateToProps = (state) => {
   return {
     posts: state.profilePage.posts,
