@@ -7,18 +7,17 @@
     padding: 10px;
 }
 
-.dialogsItems .active {
-    color: gold;
-}
-
-.dialog {
-
-}
-
 .messages {
-
+    padding: 10px;
 }
 
-.message {
+.textArea {
+    width: 100%;
+    min-height: 70px;
+    resize: none;
+    padding: 10px;
+}
+
+.button {
 
 }

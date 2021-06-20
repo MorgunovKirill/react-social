@@ -1,30 +1,33 @@
 import React from 'react';
 import { Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
-import "./App.css"
-import Dialogs from './components/Dialogs/Dialogs';
+import "./App.css";
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Header from './components/Header/Header';
-import Nav from './components/Nav/Nav';
+import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
-const App = () => {
+
+const App = () => { 
+    
   return (
-    <BrowserRouter>
+    
       <div className="app-wrapper">
         <Header />
-        <Nav />
+        <Sidebar />
         <div className="app-wrapper-content">
-          <Route path="/dialogs" component={Dialogs} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/dialogs" render={() => <DialogsContainer />}/>
+          <Route path="/profile" render={() => <Profile />} />
           <Route path="/news" component={News} />
           <Route path="/music" component={Music} />          
           <Route path="/settings" component={Settings} />
+          <Route path="/users" component={UsersContainer} />
         </div>
       </div>
-    </BrowserRouter>
+    
   );
 }
 

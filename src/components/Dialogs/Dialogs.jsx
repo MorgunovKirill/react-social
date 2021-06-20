@@ -1,52 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import classes from './Dialogs.module.css';
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Message/Message';
 
+const Dialogs = (props) => {   
+    let state = props.dialogsPage;
 
-const DialogItem = (props) => {
-    let path = "/dialogs/" + props.id;
+    const dialogsElements = state.dialogs.map((dialog, i) => {
+        return (<DialogItem key={Math.random() + i} name={dialog.name} id={dialog.id}/>)
+    })
 
-    return (
-        <div className={classes.dialog + ' ' + classes.active}>
-                    <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
+    const messagesElements = state.messages.map((message, i) => <Message key={Math.random() + i} message={message.message} sender={message.sender}/>);
 
-const Message = (props) => {
-    return (
-        <div className={classes.message}>{props.message}</div>
-    )
-}
-
-const Dialogs = (props) => {
-    let dialogsData = [
-        {name: "Dima", id:"1"},
-        {name: "Andrey", id:"2"},
-        {name: "Sveta", id:"3"},
-        {name: "Misha", id:"4"},
-        {name: "Valera", id:"5"},
-    ];
-
-    let messagesData = [
-        {message: "Hi", id:"1"},
-        {message: "How are you?", id:"2"},
-        {message: "Yo", id:"3"},   
-    ];
 
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
-                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>
-                <DialogItem name={dialogsData[3].name} id={dialogsData[3].id}/>
-                <DialogItem name={dialogsData[4].name} id={dialogsData[4].id}/>           
+               {dialogsElements}   
             </div>
             <div className={classes.messages}>
-                <Message message={messagesData[0].message}/>
-                <Message message={messagesData[1].message}/>
-                <Message message={messagesData[2].message}/>
+               {messagesElements}
+               <textarea onChange={props.updateTextArea} className={classes.textArea}  value={state.newMessage}/>
+               <button onClick={props.addMessage} className={classes.button} >Отправить сообщение</button>
             </div>
         </div>
     )

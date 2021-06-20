@@ -1,0 +1,18 @@
+.friends {
+    padding: 20px;
+}
+
+.title {    
+    margin: 0 0 20px 0;
+    color: #ffffff;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
