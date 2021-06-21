@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from './Users.module.css';
 import userDefaultAvatar from '../../assets/img/avatar.png';
+import Loader from '../UI/Loader';
+import Loader2 from '../UI/Loader2';
 
 
 let Users = (props) => {
@@ -24,7 +26,9 @@ let Users = (props) => {
             ))}
         </div>
         {
-            props.users.map(user => (
+            props.isLoading 
+            ? <Loader />
+            : props.users.map(user => (
                     <div className={classes.user} key={user.id}>
                         <div className={classes.left}>
                             <img src={user.photos.small ? user.photos.small : userDefaultAvatar } alt="avatar" width="100" height="100" />
