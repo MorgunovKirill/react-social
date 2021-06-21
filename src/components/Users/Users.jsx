@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Users.module.css';
 import userDefaultAvatar from '../../assets/img/avatar.png';
 import Loader from '../UI/Loader';
-import Loader2 from '../UI/Loader2';
+import {NavLink} from 'react-router-dom';
 
 
 let Users = (props) => {
@@ -31,7 +31,9 @@ let Users = (props) => {
             : props.users.map(user => (
                     <div className={classes.user} key={user.id}>
                         <div className={classes.left}>
-                            <img src={user.photos.small ? user.photos.small : userDefaultAvatar } alt="avatar" width="100" height="100" />
+                            <NavLink to={"/profile/" + user.id}>
+                                <img src={user.photos.small ? user.photos.small : userDefaultAvatar } alt="avatar" width="100" height="100" />
+                            </NavLink>                           
                             <button onClick={() => {props.follow(user.id)}}>
                                 {user.followed ? "Follow" : "UnFollow" }
                             </button>

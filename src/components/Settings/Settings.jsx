@@ -1,5 +1,4 @@
 import React from 'react';
-import Loader from '../UI/Loader';
 
 const Settings = (props) => {
     return (             

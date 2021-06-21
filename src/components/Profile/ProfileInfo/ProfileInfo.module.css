@@ -5,15 +5,30 @@
     margin-bottom: 20px;
 }
 
-.ava {
+.bio {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 40px;
+    padding: 0 30px;
 }
 
-.ava img { 
+.bio img { 
     width: 250px;
     height: 300px;
     margin-right: 50px;
+    object-fit: cover;
 }
 
+.info {
+    flex-grow: 1;
+}
+
+.name {
+    font-size: 35px;
+    margin: 0 0 15px 0;
+}
+
+.about { 
+    font-size: 20px;
+    margin: 0 0 15px 0;
+}
