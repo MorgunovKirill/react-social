@@ -32,7 +32,7 @@ let Users = (props) => {
                     <div className={classes.user} key={user.id}>
                         <div className={classes.left}>
                             <img src={user.photos.small ? user.photos.small : userDefaultAvatar } alt="avatar" width="100" height="100" />
-                            <button onClick={() => {props.toggleFollow(user.id)}}>
+                            <button onClick={() => {props.follow(user.id)}}>
                                 {user.followed ? "Follow" : "UnFollow" }
                             </button>
                         </div>
