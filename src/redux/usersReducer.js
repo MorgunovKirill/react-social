@@ -13,7 +13,7 @@ export const toggleIsLoading = (isLoading) => ({ type: TOGGLE_IS_LOADING, isLoad
 
 let initialState = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isLoading: false,
