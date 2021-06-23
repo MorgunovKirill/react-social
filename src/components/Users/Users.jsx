@@ -3,7 +3,7 @@ import classes from './Users.module.css';
 import userDefaultAvatar from '../../assets/img/avatar.png';
 import Loader from '../UI/Loader';
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios';
+import { usersAPI } from '../../api/api';
 
 
 let Users = (props) => {
@@ -36,24 +36,14 @@ let Users = (props) => {
                                 </NavLink>
                                 <button onClick={() => {
                                     if (user.followed) {
-                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                        { withCredentials: true,
-                                          headers: {
-                                              "API-KEY": "7156a42a-a0ca-4173-80e0-2276dbe8cf49"
-                                          }
-                                        }).then(response => {
-                                        if (response.data.resultCode === 0) {
+                                        usersAPI.unFollowUser(user.id).then(data => {
+                                        if (data.resultCode === 0) {
                                             props.follow(user.id)
                                         }
                                     })
                                     } else {
-                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                        {},
-                                        { withCredentials: true,
-                                          headers: {
-                                                "API-KEY": "7156a42a-a0ca-4173-80e0-2276dbe8cf49"
-                                          } }).then(response => {
-                                        if (response.data.resultCode === 0) {
+                                        usersAPI.followUser(user.id).then(data => {
+                                        if (data.resultCode === 0) {
                                             props.follow(user.id)
                                         }
                                     })
