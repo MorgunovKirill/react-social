@@ -1,33 +1,32 @@
 import { connect } from 'react-redux';
 import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsLoading } from '../../redux/usersReducer';
-import * as axios from 'axios';
 import React from 'react';
 import Users from './Users';
+import { usersAPI } from '../../api/api';
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-            this.props.toggleIsLoading(true);
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, { withCredentials: true }).then(response => {
-                 this.props.toggleIsLoading(false);
-                 this.props.setUsers(response.data.items);
-                 this.props.setTotalUsersCount(response.data.totalCount);
-            });
+        this.props.toggleIsLoading(true);
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.toggleIsLoading(false);
+            this.props.setUsers(data.items);
+            this.props.setTotalUsersCount(data.totalCount);
+        });
     }
 
-    // https://react-social-6dbbe-default-rtdb.europe-west1.firebasedatabase.app/users1.json
 
-    onPageChange = (pageNumber) => {       
+    onPageChange = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
         this.props.toggleIsLoading(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, { withCredentials: true }).then(response => {
-                 this.props.toggleIsLoading(false);
-                 this.props.setUsers(response.data.items)
-            });
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.toggleIsLoading(false);
+            this.props.setUsers(data.items)
+        });
     }
 
-    render () {
+    render() {
         return <Users
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
@@ -76,7 +75,7 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toggleIsLoading
-    }
+}
 )(UsersContainer)
 
 
