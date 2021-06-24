@@ -34,18 +34,22 @@ let Users = (props) => {
                                 <NavLink to={"/profile/" + user.id}>
                                     <img src={user.photos.small ? user.photos.small : userDefaultAvatar} alt="avatar" width="100" height="100" />
                                 </NavLink>
-                                <button onClick={() => {
+                                <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
                                     if (user.followed) {
+                                        props.toggleFollowingProgress(true, user.id)
                                         usersAPI.unFollowUser(user.id).then(data => {
                                         if (data.resultCode === 0) {
                                             props.follow(user.id)
                                         }
+                                        props.toggleFollowingProgress(false, user.id);
                                     })
                                     } else {
-                                        usersAPI.followUser(user.id).then(data => {
+                                        props.toggleFollowingProgress(true, user.id)
+                                        usersAPI.followUser(user.id).then(data => {                                       
                                         if (data.resultCode === 0) {
                                             props.follow(user.id)
                                         }
+                                        props.toggleFollowingProgress(false, user.id);
                                     })
                                    }
                                 }
