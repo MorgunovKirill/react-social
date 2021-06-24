@@ -1,10 +1,17 @@
+import { usersAPI } from '../api/api';
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
+
+// ACTION CREATORS
+
 export const addPostCreator = () => ({ type: ADD_POST });
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile});
+const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile});
 export const updateNewPostCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+
+// INITIAL STATE
 
 let initialState = {
     posts: [
@@ -15,6 +22,8 @@ let initialState = {
     newPostText: '',
     profile: null,
 }
+
+// REDUCER
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -46,5 +55,15 @@ const profileReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+// THUNKS
+export const getProfileData = (userId) => {
+    return (dispatch) => {
+        usersAPI.getProfileData(userId).then(data => {
+            dispatch(setUserProfile(data));
+        });
+    }
+}
+
 
 export default profileReducer;
