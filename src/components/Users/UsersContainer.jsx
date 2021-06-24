@@ -1,29 +1,19 @@
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsLoading, toggleFollowingProgress } from '../../redux/usersReducer';
+import { follow, unFollow, setCurrentPage, getUsers } from '../../redux/usersReducer';
 import React from 'react';
 import Users from './Users';
-import { usersAPI } from '../../api/api';
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toggleIsLoading(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleIsLoading(false);
-            this.props.setUsers(data.items);
-            this.props.setTotalUsersCount(data.totalCount);
-        });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);     
     }
 
 
     onPageChange = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsLoading(true);
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toggleIsLoading(false);
-            this.props.setUsers(data.items)
-        });
+        this.props.getUsers(pageNumber, this.props.pageSize);  
+        this.props.setCurrentPage(pageNumber);    
     }
 
     render() {
@@ -34,9 +24,9 @@ class UsersContainer extends React.Component {
             onPageChange={this.onPageChange}
             users={this.props.users}
             follow={this.props.follow}
+            unFollow={this.props.unFollow}
             isLoading={this.props.isLoading}
-            followingInProgress={this.props.followingInProgress}
-            toggleFollowingProgress={this.props.toggleFollowingProgress}
+            followingInProgress={this.props.followingInProgress}           
         />
     }
 }
@@ -73,12 +63,10 @@ const mapStateToProps = (state) => {
 // }
 
 export default connect(mapStateToProps, {
-    follow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleIsLoading,
-    toggleFollowingProgress
+    follow,    
+    unFollow,
+    setCurrentPage,    
+    getUsers
 }
 )(UsersContainer)
 
