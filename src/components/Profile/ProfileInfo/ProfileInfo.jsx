@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './ProfileInfo.module.css';
 import profileDefaultAvatar from '../../../assets/img/avaMock.jpg';
 import Loader from '../../UI/Loader';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 
 const ProfileInfo = (props) => {    
@@ -11,9 +12,12 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={classes.header}>
-            <img src="https://nv.ua/img/forall/users/0/2/barbuda-115-re.jpg" alt="beach" />
+            {/* <img src="https://nv.ua/img/forall/users/0/2/barbuda-115-re.jpg" alt="beach" /> */}
             <div className={classes.bio}>
-                <img src={props.profile.photos.large ? props.profile.photos.large : profileDefaultAvatar} alt="avatar" />
+                <div>
+                    <img src={props.profile.photos.large ? props.profile.photos.large : profileDefaultAvatar} alt="avatar" />
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                </div>                
                 <div className={classes.info}>
                     <h3 className={classes.name}>{props.profile.fullName}</h3>
                     <p className={classes.about}>{props.profile.aboutMe}</p>

@@ -27,11 +27,33 @@ export const usersAPI = {
         });
     },
 
-    me() {       
-        return instance.get(`auth/me`).then(response => { return response.data });
+    me() {     
+        console.warn('Obsolete method. Please use authAPI method');  
+        return authAPI.me();
     },
 
     getProfileData(userId) {
-        return instance.get(`profile/${userId}`).then(response => { return response.data });
+        console.warn('Obsolete method. Please use profileAPI method');
+        return profileAPI.getProfileData(userId);
     }
 } 
+
+export const authAPI = {
+    me() {       
+        return instance.get(`auth/me`).then(response => { return response.data });
+    },
+}
+
+export const profileAPI = {
+    getProfileData(userId) {
+        return instance.get(`profile/${userId}`).then(response => { return response.data });
+    },
+
+    getUserStatus(userId) {
+        return instance.get(`profile/status/${userId}`).then(response => { return response.data });
+    },
+
+    updateStatus(status) {        
+        return instance.put(`profile/status`, { status }).then(response => { return response.data });
+    },
+}
