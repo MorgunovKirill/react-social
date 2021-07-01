@@ -3,6 +3,7 @@ import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import { Redirect } from 'react-router-dom';
+import AddMessageFormReduxForm from './DialogsForm';
 
 const Dialogs = (props) => {   
     let state = props.dialogsPage;
@@ -10,6 +11,10 @@ const Dialogs = (props) => {
     const dialogsElements = state.dialogs.map((dialog, i) => {
         return (<DialogItem key={Math.random() + i} name={dialog.name} id={dialog.id}/>)
     })
+
+    const addNewMessage = (values) => {
+        props.addMessage(values.newMessageBody);
+    }
 
     const messagesElements = state.messages.map((message, i) => <Message key={Math.random() + i} message={message.message} sender={message.sender}/>);
 
@@ -24,8 +29,11 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                {messagesElements}
-               <textarea onChange={props.updateTextArea} className={classes.textArea}  value={state.newMessage}/>
-               <button onClick={props.addMessage} className={classes.button} >Отправить сообщение</button>
+               <AddMessageFormReduxForm onSubmit={addNewMessage}/>
+               {/* <form>
+                    <textarea onChange={props.updateTextArea} className={classes.textArea}  value={state.newMessage}/>
+                    <button onClick={props.addMessage} className={classes.button} >Отправить сообщение</button>
+               </form>              */}
             </div>
         </div>
     )
