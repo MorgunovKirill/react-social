@@ -29,11 +29,7 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                {messagesElements}
-               <AddMessageFormReduxForm onSubmit={addNewMessage}/>
-               {/* <form>
-                    <textarea onChange={props.updateTextArea} className={classes.textArea}  value={state.newMessage}/>
-                    <button onClick={props.addMessage} className={classes.button} >Отправить сообщение</button>
-               </form>              */}
+               <AddMessageFormReduxForm onSubmit={addNewMessage}/>             
             </div>
         </div>
     )
