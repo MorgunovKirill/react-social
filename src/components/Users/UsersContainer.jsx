@@ -7,6 +7,7 @@ import { getCurrentPage, getFollowingInProgress, getIsLoading, getPageSize, getT
 
 class UsersContainer extends React.Component {
 
+
     componentDidMount() {
         this.props.requestUsers(this.props.currentPage, this.props.pageSize);     
     }
