@@ -12,7 +12,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 // ACTION CREATORS
 
-export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount });
 const toggleIsLoading = (isLoading) => ({ type: TOGGLE_IS_LOADING, isLoading });
 const setUsers = (users) => ({ type: SET_USERS, users });
@@ -75,18 +75,18 @@ const usersReducer = (state = initialState, action) => {
 
 // THUNKS
 
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
 
     return (dispatch) => {
 
         dispatch(toggleIsLoading(true));
+        dispatch(setCurrentPage(page));
+        
 
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-
+        usersAPI.getUsers(page, pageSize).then(data => {
             dispatch(toggleIsLoading(false));
             dispatch(setUsers(data.items));
             dispatch(setTotalUsersCount(data.totalCount));
-
         });
     }
 }
