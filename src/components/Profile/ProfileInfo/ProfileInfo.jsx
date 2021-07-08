@@ -3,6 +3,7 @@ import classes from './ProfileInfo.module.css';
 import profileDefaultAvatar from '../../../assets/img/avaMock.jpg';
 import Loader from '../../UI/Loader';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks'
 
 
 const ProfileInfo = (props) => {    
@@ -16,7 +17,8 @@ const ProfileInfo = (props) => {
             <div className={classes.bio}>
                 <div>
                     <img src={props.profile.photos.large ? props.profile.photos.large : profileDefaultAvatar} alt="avatar" />
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+                    {/* <ProfileStatus status={props.status} updateStatus={props.updateStatus} /> */}
                 </div>                
                 <div className={classes.info}>
                     <h3 className={classes.name}>{props.profile.fullName}</h3>
