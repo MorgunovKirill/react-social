@@ -5,7 +5,6 @@ import Post from './Post/Post';
 
 
 const Myposts = (props) => { 
-
   const postElements = props.posts.map( (post, i) => <Post key={Math.random() + i} message={post.message} likesCount={post.likesCount} />);
   const addPost = (formData) => {
       props.addPost(formData.mypost);
