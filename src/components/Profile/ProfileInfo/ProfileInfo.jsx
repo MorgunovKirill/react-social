@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './ProfileInfo.module.css';
 import profileDefaultAvatar from '../../../assets/img/avaMock.jpg';
 import Loader from '../../UI/Loader';
-import ProfileStatus from './ProfileStatus/ProfileStatus';
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks'
 
 
@@ -18,7 +17,6 @@ const ProfileInfo = (props) => {
                 <div>
                     <img src={props.profile.photos.large ? props.profile.photos.large : profileDefaultAvatar} alt="avatar" />
                     <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
-                    {/* <ProfileStatus status={props.status} updateStatus={props.updateStatus} /> */}
                 </div>                
                 <div className={classes.info}>
                     <h3 className={classes.name}>{props.profile.fullName}</h3>
