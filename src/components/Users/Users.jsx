@@ -3,31 +3,22 @@ import classes from './Users.module.css';
 import userDefaultAvatar from '../../assets/img/avatar.png';
 import Loader from '../UI/Loader';
 import { NavLink } from 'react-router-dom';
+import Paginator from '../UI/Paginator/Paginator';
 
 
-let Users = (props) => {    
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
-
+let Users = ({currentPage, totalUsersCount, pageSize, onPageChange, users, ...props}) => {    
+  
     return (
         <div>
-            <h2 className={classes.title}>Users</h2>
-            <div className={classes.pagination}>
-                {pages.map(p => (
-                    <span
-                        key={Math.random + p}
-                        className={props.currentPage === p ? classes.selectedPage : ""}
-                        onClick={() => { props.onPageChange(p) }} >{p}</span>
-                ))}
-            </div>
+            <h2 className={classes.title}>Users</h2>         
+            <Paginator currentPage={currentPage}
+             totalUsersCount={totalUsersCount}
+             pageSize={pageSize}
+             onPageChange={onPageChange} />
             {
                 props.isLoading
                     ? <Loader />
-                    : props.users.map(user => (
+                    : users.map(user => (
                         <div className={classes.user} key={user.id}>
                             <div className={classes.left}>
                                 <NavLink to={"/profile/" + user.id}>

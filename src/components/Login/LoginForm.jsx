@@ -1,24 +1,18 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Input } from '../UI/FormControls/FormControls';
+import { createField, Input } from '../UI/FormControls/FormControls';
 import { required } from '../../utils/validators/validators';
 import classes from './LoginForm.module.css';
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
  
     return (
-            <form onSubmit={props.handleSubmit}>
-                <div>
-                    <Field name={"email"} placeholder={"login"} validate={[required]} component={Input} />
-                </div>
-                <div>
-                    <Field name={"password"} type={"password"} placeholder={"password"} validate={[required]} component={Input} />
-                </div>
-                <div>
-                    <Field name={"rememberMe"} type={"checkbox"} component={Input} />
-                </div>
-                {props.error 
-                ? <div className={classes.formSummaryError}> {props.error} </div>
+            <form onSubmit={handleSubmit}>
+                { createField("Login", "email", [required], Input) }              
+                { createField("Password", "password", [required], Input, {type: "password"}) }  
+                { createField(null, "rememberMe", [], Input, {type: "checkbox"}, "Remember me")}               
+                {error 
+                ? <div className={classes.formSummaryError}> {error} </div>
                 : null
                 }
                 <div>

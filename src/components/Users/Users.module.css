@@ -47,20 +47,3 @@
 .country {
     margin-bottom: 10px;
 }
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 100%;
-}
-
-.pagination span {
-    margin-right: 5px;
-    cursor: pointer;
-}
-
-.selectedPage {
-    font-weight: bold;
-}

@@ -10,7 +10,7 @@ const SET_STATUS = 'SET_STATUS';
 export const addPostCreator = (newPost) => ({ type: ADD_POST, newPost });
 
 const setStatus = (status) => ({ type: SET_STATUS, status });
-const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile});
+const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 
 // INITIAL STATE
 
@@ -39,7 +39,7 @@ const profileReducer = (state = initialState, action) => {
                 posts: [...state.posts, newPost],
                 newPostText: '',
             };
-        }     
+        }
         case SET_USER_PROFILE: {
             return {
                 ...state,
@@ -59,28 +59,26 @@ const profileReducer = (state = initialState, action) => {
 
 // THUNKS
 export const getProfileData = (userId) => {
-    return (dispatch) => {
-        usersAPI.getProfileData(userId).then(data => {
-            dispatch(setUserProfile(data));
-        });
+    return async (dispatch) => {
+        const data = await usersAPI.getProfileData(userId);
+        dispatch(setUserProfile(data));
     }
 }
 
 export const getUserStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getUserStatus(userId).then(data => {            
-            dispatch(setStatus(data));
-        });
+    return async (dispatch) => {
+        const data = await profileAPI.getUserStatus(userId);
+        dispatch(setStatus(data));
     }
 }
 
 export const updateStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status).then(data => {    
-            if (data.resultCode === 0) {
-                dispatch(setStatus(status));
-            }                    
-        });
+    return async (dispatch) => {
+        const data = await profileAPI.updateStatus(status)
+
+        if (data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
     }
 }
 
