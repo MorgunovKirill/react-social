@@ -5,8 +5,8 @@ import Loader from '../../UI/Loader';
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks'
 
 
-const ProfileInfo = (props) => {    
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {    
+    if (!profile) {
         return <Loader />
     }
 
@@ -15,28 +15,28 @@ const ProfileInfo = (props) => {
             {/* <img src="https://nv.ua/img/forall/users/0/2/barbuda-115-re.jpg" alt="beach" /> */}
             <div className={classes.bio}>
                 <div>
-                    <img src={props.profile.photos.large ? props.profile.photos.large : profileDefaultAvatar} alt="avatar" />
-                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+                    <img src={profile.photos.large ? profile.photos.large : profileDefaultAvatar} alt="avatar" />
+                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
                 </div>                
                 <div className={classes.info}>
-                    <h3 className={classes.name}>{props.profile.fullName}</h3>
-                    <p className={classes.about}>{props.profile.aboutMe}</p>
+                    <h3 className={classes.name}>{profile.fullName}</h3>
+                    <p className={classes.about}>{profile.aboutMe}</p>
                     <ul className={classes.contacts}>
                         <li className={classes.contact}>
-                            <a href={props.profile.contacts.vk}>Вконтакте</a>
+                            <a href={profile.contacts.vk}>Вконтакте</a>
                         </li>
                         <li className={classes.contact}>
-                            <a href={props.profile.contacts.twitter}>Twitter</a>
+                            <a href={profile.contacts.twitter}>Twitter</a>
                         </li>
                         <li className={classes.contact}>
-                            <a href={props.profile.contacts.instagram}>Instagram</a>
+                            <a href={profile.contacts.instagram}>Instagram</a>
                         </li>
                         <li className={classes.contact}>
-                            <a href={props.profile.contacts.github}>Github</a>
+                            <a href={profile.contacts.github}>Github</a>
                         </li>
                     </ul>
-                    <h4>  {props.profile.lookingForAJob ? "Ищу работу!" : "Не ищу работу!" } </h4> 
-                    <p> {props.profile.lookingForAJobDescription} </p>                 
+                    <h4>  {profile.lookingForAJob ? "Ищу работу!" : "Не ищу работу!" } </h4> 
+                    <p> {profile.lookingForAJobDescription} </p>                 
                 </div>
             </div>           
         </div>

@@ -9,12 +9,14 @@ class UsersContainer extends React.Component {
 
 
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);     
+        const {currentPage, pageSize} = this.props;
+        this.props.requestUsers(currentPage, pageSize);
     }
 
 
     onPageChange = (pageNumber) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize);  
+        const {pageSize} = this.props;
+        this.props.requestUsers(pageNumber, pageSize);
     }
 
     render() {
@@ -27,7 +29,7 @@ class UsersContainer extends React.Component {
             follow={this.props.follow}
             unFollow={this.props.unFollow}
             isLoading={this.props.isLoading}
-            followingInProgress={this.props.followingInProgress}           
+            followingInProgress={this.props.followingInProgress}
         />
     }
 }
@@ -64,8 +66,8 @@ const mapStateToProps = (state) => {
 // }
 
 export default connect(mapStateToProps, {
-    follow,    
-    unFollow,        
+    follow,
+    unFollow,
     requestUsers
 }
 )(UsersContainer)
