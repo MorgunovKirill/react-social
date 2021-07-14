@@ -23,16 +23,16 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
                     <p className={classes.about}>{profile.aboutMe}</p>
                     <ul className={classes.contacts}>
                         <li className={classes.contact}>
-                            <a href={profile.contacts.vk}>Вконтакте</a>
+                            <a href={profile.contacts.vk ? profile.contacts.vk : "#"}  target="_blank" rel="noreferrer">Вконтакте</a>
                         </li>
                         <li className={classes.contact}>
-                            <a href={profile.contacts.twitter}>Twitter</a>
+                            <a href={profile.contacts.twitter ? profile.contacts.twitter : "#"}  target="_blank" rel="noreferrer">Twitter</a>
                         </li>
                         <li className={classes.contact}>
-                            <a href={profile.contacts.instagram}>Instagram</a>
+                            <a href={profile.contacts.instagram ? profile.contacts.instagram : "#"}  target="_blank" rel="noreferrer">Instagram</a>
                         </li>
                         <li className={classes.contact}>
-                            <a href={profile.contacts.github}>Github</a>
+                            <a href={profile.contacts.github ? profile.contacts.github : "#"} target="_blank" rel="noreferrer">Github</a>
                         </li>
                     </ul>
                     <h4>  {profile.lookingForAJob ? "Ищу работу!" : "Не ищу работу!" } </h4> 

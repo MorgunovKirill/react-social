@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { createField, Input } from '../UI/FormControls/FormControls';
 import { required } from '../../utils/validators/validators';
 import classes from './LoginForm.module.css';
