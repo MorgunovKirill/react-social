@@ -5,6 +5,11 @@
     margin-bottom: 20px;
 }
 
+.ava {
+    display: flex;
+    flex-direction: column;
+}
+
 .bio {
     display: flex;
     align-items: flex-start;
